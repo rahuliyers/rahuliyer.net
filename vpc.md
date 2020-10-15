@@ -167,3 +167,20 @@ In the above example, an IPv6 CIDR block is associated with your VPC. In your ro
 - There is a route for all IPv6 traffic (::/0) that points to an egress-only internet gateway.
 
 **If you frequently reference the same set of CIDR blocks across your AWS resources, you can create a customer-managed prefix list to group them together. You can then specify the prefix list as the destination in your route table entry.**
+
+## Main Route table
+
+| Destination | target |
+| :------------- | :------------- |
+| 10.200.0.0/16 | local |
+
+In our previous example, after creating the subnets, the subnets are added to the main route table by default. The destination 10.200.0.0/16 / local target combination ensures that all subnets can communicate with each other using their private addresses.
+
+## Internet Gateways
+
+A VPC can have a single Internet Gateway. The default VPC has an internet gateway attached. But if you create a custom VPC then you would have to create your own Internet Gateway if you would like the VPC to directly connect to the internet.
+
+- If you create your own Internet Gateway, it will be created in the detached state, and you would need to attach it to your VPC.
+- Even after attaching it to your VPC, it does not mean that your instances can use it right away. You must add a route in your route table. The destination must be 0.0.0.0/0 and Target will be the internet gateway. Note that this simply allows IPv4 access to the internet. For IPv6, you would have to add a route for IPv6 as well.
+
+At this point, you have your VPC setup, and can proceed to [creating EC2 instances](ec2.md).
