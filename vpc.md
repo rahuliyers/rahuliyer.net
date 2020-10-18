@@ -181,6 +181,6 @@ In our previous example, after creating the subnets, the subnets are added to th
 A VPC can have a single Internet Gateway. The default VPC has an internet gateway attached. But if you create a custom VPC then you would have to create your own Internet Gateway if you would like the VPC to directly connect to the internet.
 
 - If you create your own Internet Gateway, it will be created in the detached state, and you would need to attach it to your VPC.
-- Even after attaching it to your VPC, it does not mean that your instances can use it right away. You must add a route in your route table. The destination must be 0.0.0.0/0 and Target will be the internet gateway. Note that this simply allows IPv4 access to the internet. For IPv6, you would have to add a route for IPv6 as well.
+- Even after attaching it to your VPC, it does not mean that your instances can use it right away. You must add a route in your route table. The destination must be 0.0.0.0/0 and Target will be the internet gateway. Note that this simply allows IPv4 access to the internet. For IPv6, you would have to add a route for IPv6 as well. In the case of IPv6, it would be ::/0, and the target would be the egress only internet gateway.
 
 At this point, you have your VPC setup, and can proceed to [creating EC2 instances](ec2.md).
